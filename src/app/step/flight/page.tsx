@@ -42,6 +42,8 @@ export default function FlightPage() {
   const [capturePreview, setCapturePreview] = useState<string | null>(null);
   const [captureAnalyzing, setCaptureAnalyzing] = useState(false);
   const [captureParsed, setCaptureParsed] = useState(false);
+  const [captureError, setCaptureError] = useState<string | null>(null);
+  const [parsedSummary, setParsedSummary] = useState<string | null>(null);
   const captureInputRef = useRef<HTMLInputElement>(null);
 
   const selectedAirline = AIRLINES.find((a) => a.code === airlineCode);
@@ -84,34 +86,61 @@ export default function FlightPage() {
   ]);
 
   const handleCaptureUpload = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (!file) return;
       setFlightPhoto(file);
       setCapturePreview(URL.createObjectURL(file));
       setCaptureAnalyzing(true);
       setCaptureParsed(false);
+      setCaptureError(null);
+      setParsedSummary(null);
 
-      // Simulate parsing
-      setTimeout(() => {
-        setCaptureAnalyzing(false);
-        setCaptureParsed(true);
-        // Set mock parsed data
-        setFlightInfo({
-          airline_code: 'KE',
-          airline_name_ko: '대한항공',
-          flight_number: 'KE701',
-          departure_date: '2026-05-15',
-          departure_airport: 'ICN',
-          arrival_airport: 'NRT',
-          destination_country_code: 'JP',
-          destination_country_ko: '일본',
-          confidence: 0.92,
+      try {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const res = await fetch('/api/analyze/flight', {
+          method: 'POST',
+          body: formData,
         });
-      }, 2500);
+
+        const json = await res.json();
+
+        if (!res.ok || !json.success) {
+          throw new Error(json.error ?? '항공편 분석에 실패했어요');
+        }
+
+        const data = json.data;
+        setFlightInfo(data);
+        setCaptureParsed(true);
+
+        // Build a human-readable summary from the actual parsed data
+        const dateObj = new Date(data.departure_date);
+        const month = dateObj.getMonth() + 1;
+        const day = dateObj.getDate();
+        setParsedSummary(
+          `${data.airline_name_ko}으로 ${month}월 ${day}일에 ${data.destination_country_ko}로 떠나시네요!`,
+        );
+      } catch (err) {
+        const message = err instanceof Error ? err.message : '분석 중 오류가 발생했어요';
+        setCaptureError(message);
+        setCaptureParsed(false);
+      } finally {
+        setCaptureAnalyzing(false);
+      }
     },
     [setFlightPhoto, setFlightInfo],
   );
+
+  const handleCaptureReset = useCallback(() => {
+    setCapturePreview(null);
+    setCaptureAnalyzing(false);
+    setCaptureParsed(false);
+    setCaptureError(null);
+    setParsedSummary(null);
+    if (captureInputRef.current) captureInputRef.current.value = '';
+  }, []);
 
   const inputClass =
     'w-full h-[52px] rounded-[12px] border border-[#E5E8EB] px-4 text-[16px] text-[#191F28] bg-white outline-none focus:border-[#3182F6] transition-colors appearance-none';
@@ -199,11 +228,35 @@ export default function FlightPage() {
                         분석 중...
                       </span>
                     </div>
-                  ) : captureParsed ? (
-                    <div className="w-full p-4 rounded-[16px] bg-[#F8FBFF] border border-[#E8F0FE]">
-                      <p className="text-[15px] text-[#3182F6] font-medium leading-[1.5] text-center break-keep">
-                        대한항공으로 5월 15일에 일본으로 떠나시네요!
-                      </p>
+                  ) : captureError ? (
+                    <div className="w-full flex flex-col gap-3">
+                      <div className="p-4 rounded-[12px] bg-[#FFF0F0] border border-[#FFD4D4]">
+                        <p className="text-[14px] text-[#E5503C] leading-[1.5]">
+                          {captureError}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleCaptureReset}
+                        className="text-[14px] text-[#3182F6] font-medium"
+                      >
+                        다시 시도하기
+                      </button>
+                    </div>
+                  ) : captureParsed && parsedSummary ? (
+                    <div className="w-full flex flex-col gap-3">
+                      <div className="w-full p-4 rounded-[16px] bg-[#F8FBFF] border border-[#E8F0FE]">
+                        <p className="text-[15px] text-[#3182F6] font-medium leading-[1.5] text-center break-keep">
+                          {parsedSummary}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleCaptureReset}
+                        className="text-[14px] text-[#8B95A1] font-medium text-center"
+                      >
+                        다시 업로드하기
+                      </button>
                     </div>
                   ) : null}
                 </div>

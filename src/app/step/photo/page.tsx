@@ -2,14 +2,21 @@
 
 import { useState, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { Camera, ImageIcon } from 'lucide-react';
+import { Camera, ImageIcon, Loader2 } from 'lucide-react';
 import { StepNavigation, BottomCTA, PageTransition } from '@/components/layout';
 import { useAnalysisStore } from '@/stores/analysis-store';
 
 export default function PhotoPage() {
   const router = useRouter();
   const setPetPhoto = useAnalysisStore((s) => s.setPetPhoto);
+  const petPhoto = useAnalysisStore((s) => s.petPhoto);
+  const setPetAnalysis = useAnalysisStore((s) => s.setPetAnalysis);
+  const setFullAnalysis = useAnalysisStore((s) => s.setFullAnalysis);
+  const flightInfo = useAnalysisStore((s) => s.flightInfo);
+
   const [preview, setPreview] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
   const albumInputRef = useRef<HTMLInputElement>(null);
 
@@ -20,6 +27,7 @@ export default function PhotoPage() {
       setPetPhoto(file);
       const url = URL.createObjectURL(file);
       setPreview(url);
+      setErrorMsg(null);
     },
     [setPetPhoto],
   );
@@ -27,9 +35,82 @@ export default function PhotoPage() {
   const handleReset = useCallback(() => {
     setPreview(null);
     setPetPhoto(null);
+    setErrorMsg(null);
     if (cameraInputRef.current) cameraInputRef.current.value = '';
     if (albumInputRef.current) albumInputRef.current.value = '';
   }, [setPetPhoto]);
+
+  const handleNext = useCallback(async () => {
+    if (!petPhoto) return;
+
+    setIsLoading(true);
+    setErrorMsg(null);
+
+    try {
+      // Step 1: Analyze the pet photo
+      const formData = new FormData();
+      formData.append('image', petPhoto);
+
+      const photoRes = await fetch('/api/analyze/photo', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const photoJson = await photoRes.json();
+
+      if (!photoRes.ok || !photoJson.success) {
+        throw new Error(photoJson.error ?? '사진 분석에 실패했어요');
+      }
+
+      const photoResult = photoJson.data;
+      setPetAnalysis(photoResult);
+
+      // Step 2: If flight info also exists, run full analysis
+      if (flightInfo) {
+        try {
+          const fullRes = await fetch('/api/analyze/full', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              petInfo: {
+                animal_type: photoResult.animal_type,
+                breed_ko: photoResult.breed_ko,
+                breed_en: photoResult.breed_en,
+                estimated_weight_kg: photoResult.estimated_weight_kg,
+                is_brachycephalic: photoResult.is_brachycephalic,
+                size_category: photoResult.size_category,
+              },
+              flightInfo: {
+                airline_code: flightInfo.airline_code,
+                airline_name_ko: flightInfo.airline_name_ko,
+                flight_number: flightInfo.flight_number,
+                departure_date: flightInfo.departure_date,
+                departure_airport: flightInfo.departure_airport,
+                arrival_airport: flightInfo.arrival_airport,
+                destination_country_code: flightInfo.destination_country_code,
+                destination_country_ko: flightInfo.destination_country_ko,
+              },
+            }),
+          });
+
+          const fullJson = await fullRes.json();
+
+          if (fullRes.ok && fullJson.success) {
+            setFullAnalysis(fullJson.data);
+          }
+        } catch {
+          // Full analysis failure is non-fatal; we still have pet + flight data
+        }
+      }
+
+      router.push('/result');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : '분석 중 오류가 발생했어요';
+      setErrorMsg(message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [petPhoto, flightInfo, setPetAnalysis, setFullAnalysis, router]);
 
   return (
     <PageTransition>
@@ -50,7 +131,18 @@ export default function PhotoPage() {
             AI가 품종과 체중을 자동으로 분석해요
           </p>
 
-          {preview ? (
+          {/* Loading overlay */}
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center gap-4 py-20">
+              <Loader2 className="w-10 h-10 text-[#3182F6] animate-spin" />
+              <p className="text-[17px] font-semibold text-[#191F28] animate-pulse">
+                AI가 분석 중이에요...
+              </p>
+              <p className="text-[14px] text-[#8B95A1]">
+                잠시만 기다려주세요
+              </p>
+            </div>
+          ) : preview ? (
             /* Photo preview */
             <div className="flex flex-col items-center gap-4">
               <div className="w-full aspect-square rounded-[16px] overflow-hidden bg-[#F2F4F6]">
@@ -104,13 +196,22 @@ export default function PhotoPage() {
               </label>
             </div>
           )}
+
+          {/* Error message */}
+          {errorMsg && (
+            <div className="mt-4 p-4 rounded-[12px] bg-[#FFF0F0] border border-[#FFD4D4]">
+              <p className="text-[14px] text-[#E5503C] leading-[1.5]">
+                {errorMsg}
+              </p>
+            </div>
+          )}
         </div>
 
         <BottomCTA
-          disabled={!preview}
-          onClick={() => router.push('/result')}
+          disabled={!preview || isLoading}
+          onClick={handleNext}
         >
-          다음
+          {isLoading ? '분석 중...' : '다음'}
         </BottomCTA>
       </div>
     </PageTransition>
