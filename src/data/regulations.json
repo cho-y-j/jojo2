@@ -1,0 +1,334 @@
+{
+  "countries": [
+    {
+      "code": "JP",
+      "nameKo": "일본",
+      "nameEn": "Japan",
+      "officialSource": "https://www.maff.go.jp/aqs/english/animal/dog/index.html",
+      "regulations": [
+        {
+          "animalType": "ALL",
+          "documentName": "마이크로칩 삽입",
+          "description": "ISO 11784/11785 표준 15자리 마이크로칩. 첫 광견병 예방접종 전에 삽입 필요",
+          "daysBeforeDeparture": 220,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 50,000원",
+          "notes": "첫 접종과 같은 날 가능"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "광견병 예방접종 증명서",
+          "description": "2회 이상 접종 필요. 2차는 1차로부터 최소 30일 이후. 1차 접종일을 0일로 계산",
+          "daysBeforeDeparture": 210,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 40,000원/회",
+          "notes": "불활성화 백신 또는 재조합 백신만 인정"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "광견병 항체가 검사",
+          "description": "혈청 광견병 항체가 0.5 IU/ml 이상. 일본 농림수산성 승인 검사실에서 실시",
+          "daysBeforeDeparture": 180,
+          "isRequired": true,
+          "issueMethod": "농림축산검역본부 지정 검사기관",
+          "estimatedCost": "약 250,000원",
+          "notes": "핵심: 채혈일로부터 입국일까지 180일 이상 경과 필수"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "사전 신고서 (NACCS)",
+          "description": "일본 동물검역소 NACCS 시스템에 사전 신고",
+          "daysBeforeDeparture": 40,
+          "isRequired": true,
+          "issueMethod": "일본 동물검역소 온라인 시스템",
+          "estimatedCost": "무료",
+          "notes": "https://www.maff.go.jp/aqs/tetuzuki/system/49.html"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "건강증명서 (검역증명서)",
+          "description": "농림축산검역본부(QIA)에서 발급. 마이크로칩 번호, 접종 이력 포함",
+          "daysBeforeDeparture": 10,
+          "isRequired": true,
+          "issueMethod": "농림축산검역본부 (인천공항 검역소)",
+          "estimatedCost": "약 10,000원",
+          "notes": "출국 당일 공항 검역소에서 최종 발급"
+        }
+      ]
+    },
+    {
+      "code": "US",
+      "nameKo": "미국",
+      "nameEn": "United States",
+      "officialSource": "https://www.cdc.gov/importation/dogs/index.html",
+      "regulations": [
+        {
+          "animalType": "DOG",
+          "documentName": "CDC 개 수입 양식",
+          "description": "모든 개에게 필수. CDC 홈페이지에서 온라인 작성 후 영수증 발급",
+          "daysBeforeDeparture": 14,
+          "isRequired": true,
+          "issueMethod": "CDC 온라인 시스템 (https://www.cdc.gov/dog-import)",
+          "estimatedCost": "무료",
+          "notes": "한국은 고위험 국가로 분류됨 → 추가 서류 필요"
+        },
+        {
+          "animalType": "DOG",
+          "documentName": "광견병 예방접종 증명서",
+          "description": "한국(고위험국)에서 출발 시 필수. 미국 승인 백신, 영문 증명서",
+          "daysBeforeDeparture": 30,
+          "isRequired": true,
+          "issueMethod": "동물병원 (영문 발급)",
+          "estimatedCost": "약 40,000원",
+          "notes": "접종 후 최소 28일 경과 필요"
+        },
+        {
+          "animalType": "DOG",
+          "documentName": "마이크로칩",
+          "description": "ISO 호환 마이크로칩 삽입 (CDC 2024년 규정 강화)",
+          "daysBeforeDeparture": 30,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 50,000원",
+          "notes": "광견병 접종 전 삽입 권장"
+        },
+        {
+          "animalType": "DOG",
+          "documentName": "건강증명서",
+          "description": "농림축산검역본부(QIA) 발급 검역증명서",
+          "daysBeforeDeparture": 10,
+          "isRequired": true,
+          "issueMethod": "농림축산검역본부",
+          "estimatedCost": "약 10,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "CAT",
+          "documentName": "건강 확인",
+          "description": "고양이는 별도 서류 불필요. 입국 시 건강 상태 확인만",
+          "daysBeforeDeparture": 0,
+          "isRequired": true,
+          "issueMethod": "입국 시 검역",
+          "estimatedCost": "무료",
+          "notes": "광견병 증상 시 입국 거부 가능. 항공사별 건강증명서 요구할 수 있음"
+        },
+        {
+          "animalType": "CAT",
+          "documentName": "건강증명서 (항공사용)",
+          "description": "항공사에서 요구할 수 있음. 출발 10일 이내 발급",
+          "daysBeforeDeparture": 10,
+          "isRequired": false,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 50,000원",
+          "notes": "탑승 항공사에 사전 확인 필요"
+        }
+      ]
+    },
+    {
+      "code": "TH",
+      "nameKo": "태국",
+      "nameEn": "Thailand",
+      "officialSource": "https://en.dld.go.th/index.php/en/",
+      "regulations": [
+        {
+          "animalType": "ALL",
+          "documentName": "마이크로칩 삽입",
+          "description": "ISO 11784/11785 표준 마이크로칩. 광견병 접종 전 삽입",
+          "daysBeforeDeparture": 51,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 50,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "광견병 예방접종 증명서",
+          "description": "입국 21일 이상 전 접종, 1년 이내 유효",
+          "daysBeforeDeparture": 21,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 40,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "DOG",
+          "documentName": "DHPP 종합 예방접종",
+          "description": "디스템퍼, 간염, 파라인플루엔자, 파보바이러스 예방접종",
+          "daysBeforeDeparture": 21,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 80,000원",
+          "notes": "1년 이내 유효"
+        },
+        {
+          "animalType": "DOG",
+          "documentName": "렙토스피라증 예방접종",
+          "description": "렙토스피라증 예방접종 증명",
+          "daysBeforeDeparture": 21,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 50,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "CAT",
+          "documentName": "FVRCP 종합 예방접종",
+          "description": "고양이 바이러스성 비기관염, 칼리시바이러스, 범백혈구감소증",
+          "daysBeforeDeparture": 21,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 80,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "수입허가서 (Form R1/1)",
+          "description": "태국 축산개발청 동물검역소에서 발급",
+          "daysBeforeDeparture": 60,
+          "isRequired": true,
+          "issueMethod": "태국 축산개발청 (이메일 신청)",
+          "estimatedCost": "무료",
+          "notes": "출국 7~60일 전 신청, 발급 후 60일 유효"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "건강증명서 (검역증명서)",
+          "description": "농림축산검역본부(QIA) 발급",
+          "daysBeforeDeparture": 10,
+          "isRequired": true,
+          "issueMethod": "농림축산검역본부",
+          "estimatedCost": "약 10,000원",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "code": "VN",
+      "nameKo": "베트남",
+      "nameEn": "Vietnam",
+      "officialSource": "https://www.qia.go.kr/",
+      "regulations": [
+        {
+          "animalType": "ALL",
+          "documentName": "마이크로칩 삽입",
+          "description": "ISO 11784/11785 표준 마이크로칩",
+          "daysBeforeDeparture": 30,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 50,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "광견병 예방접종 증명서",
+          "description": "3개월령 이상, 입국 30일~12개월 전 접종",
+          "daysBeforeDeparture": 30,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 40,000원",
+          "notes": "3년 유효 백신도 1년으로 간주"
+        },
+        {
+          "animalType": "DOG",
+          "documentName": "DHPP 종합 예방접종",
+          "description": "디스템퍼, 간염, 파라인플루엔자, 파보바이러스",
+          "daysBeforeDeparture": 30,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 80,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "CAT",
+          "documentName": "FVRCP 종합 예방접종",
+          "description": "고양이 종합 예방접종",
+          "daysBeforeDeparture": 30,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 80,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "건강증명서 (검역증명서)",
+          "description": "농림축산검역본부(QIA) 발급. 영문 작성",
+          "daysBeforeDeparture": 10,
+          "isRequired": true,
+          "issueMethod": "농림축산검역본부",
+          "estimatedCost": "약 10,000원",
+          "notes": "베트남 도착 시 검역소에서 확인"
+        }
+      ]
+    },
+    {
+      "code": "TW",
+      "nameKo": "대만",
+      "nameEn": "Taiwan",
+      "officialSource": "https://www.aphia.gov.tw/",
+      "regulations": [
+        {
+          "animalType": "ALL",
+          "documentName": "마이크로칩 삽입",
+          "description": "ISO 11784/11785 표준 마이크로칩. 최소 90일령",
+          "daysBeforeDeparture": 270,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 50,000원",
+          "notes": "항체가 검사 전 삽입 필수"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "광견병 예방접종 증명서",
+          "description": "최소 90일령. 출국 30일~1년 전 접종",
+          "daysBeforeDeparture": 30,
+          "isRequired": true,
+          "issueMethod": "동물병원",
+          "estimatedCost": "약 40,000원",
+          "notes": ""
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "광견병 항체가 검사",
+          "description": "중화 항체가 0.5 IU/ml 이상. WHO/대만 APHIA 지정 검사실",
+          "daysBeforeDeparture": 180,
+          "isRequired": true,
+          "issueMethod": "농림축산검역본부 지정 검사기관",
+          "estimatedCost": "약 250,000원",
+          "notes": "채혈일로부터 입국까지 180일 경과 시 격리 면제 가능"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "수입허가서",
+          "description": "대만 APHIA 온라인 시스템으로 신청",
+          "daysBeforeDeparture": 20,
+          "isRequired": true,
+          "issueMethod": "대만 APHIA 온라인 (https://pet-epermit.aphia.gov.tw/)",
+          "estimatedCost": "무료",
+          "notes": ""
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "검역 시설 예약",
+          "description": "동물검역소 지정 격리시설 사전 예약",
+          "daysBeforeDeparture": 20,
+          "isRequired": true,
+          "issueMethod": "대만 APHIA",
+          "estimatedCost": "약 100,000원 (7일 기준)",
+          "notes": "항체가 검사 180일 경과 + 서류 완비 시 공항 석방 가능"
+        },
+        {
+          "animalType": "ALL",
+          "documentName": "건강증명서 (검역증명서)",
+          "description": "농림축산검역본부(QIA) 발급",
+          "daysBeforeDeparture": 10,
+          "isRequired": true,
+          "issueMethod": "농림축산검역본부",
+          "estimatedCost": "약 10,000원",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}
