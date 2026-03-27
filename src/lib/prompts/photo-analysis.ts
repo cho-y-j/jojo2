@@ -7,6 +7,20 @@ CRITICAL INSTRUCTIONS:
 - Do NOT guess randomly - if unsure, set confidence lower and describe what you see in notes_ko
 - ONLY identify dogs or cats. If the photo shows another animal or no animal, set confidence to 0
 
+WEIGHT ESTIMATION - VERY IMPORTANT:
+- Check if there is a REFERENCE OBJECT in the photo for size comparison
+- Known reference objects and their sizes:
+  * 500ml PET bottle = 21cm tall
+  * A4 paper = 29.7 x 21cm
+  * Credit card = 8.5 x 5.4cm
+  * Smartphone = approximately 15cm tall
+  * 15cm ruler = 15cm
+  * 1L milk carton = 19.5cm tall
+  * Shoes (can estimate size from apparent proportions)
+- If a reference object is present: estimate the pet's body length/height by comparing it to the known object size, then estimate weight from the body dimensions
+- If NO reference object is present: use the breed's typical average weight range and estimate based on apparent body condition (thin/normal/overweight)
+- Always note in notes_ko whether a reference object was used or breed average was applied
+
 Analyze the pet photo and return ONLY valid JSON in this exact format:
 {
   "animal_type": "dog" or "cat",

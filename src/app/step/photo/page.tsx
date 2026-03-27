@@ -127,9 +127,32 @@ export default function PhotoPage() {
           <h2 className="text-[22px] font-bold text-[#191F28] leading-[1.4] break-keep mb-2">
             반려동물 사진을 넣어주세요
           </h2>
-          <p className="text-[15px] text-[#4E5968] leading-[1.6] mb-8">
+          <p className="text-[15px] text-[#4E5968] leading-[1.6] mb-4">
             AI가 품종과 체중을 자동으로 분석해요
           </p>
+
+          {/* 측정 사물 안내 */}
+          <div className="rounded-[12px] bg-[#F8FBFF] border border-[#E8F0FE] p-4 mb-6">
+            <p className="text-[14px] font-semibold text-[#3182F6] mb-1.5 break-keep">
+              더 정확한 체중 측정을 원하시나요?
+            </p>
+            <p className="text-[13px] text-[#4E5968] leading-[1.6] break-keep mb-2">
+              아래 물건과 함께 찍으면 크기를 더 정확하게 측정할 수 있어요.
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {['500ml 페트병', 'A4 용지', '신용카드', '15cm 자', '스마트폰'].map((item) => (
+                <span
+                  key={item}
+                  className="px-2 py-1 rounded-full bg-white border border-[#E5E8EB] text-[12px] text-[#333D4B]"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+            <p className="text-[12px] text-[#8B95A1] mt-2 break-keep">
+              사물 없이 반려동물만 올리면 품종별 평균으로 계산해요
+            </p>
+          </div>
 
           {/* Loading overlay */}
           {isLoading ? (
