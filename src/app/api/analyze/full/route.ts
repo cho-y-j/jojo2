@@ -256,11 +256,21 @@ export async function POST(request: Request) {
       },
       timeline,
       aircraftType: aircraftType ?? undefined,
-      totalEstimatedCost: transportResult.mode === 'CABIN'
-        ? `${(airline.cabinFeeKRW ?? 50000).toLocaleString()}원 (기내 반입 수수료)`
-        : transportResult.mode === 'CARGO'
-          ? `${airline.cargoFeeKRW ?? '항공사 문의'} (화물 운송비)`
-          : '항공사 문의',
+      totalEstimatedCost: (() => {
+        const destCode = flightInfo.destination_country_code;
+        const intlFees = (airline as unknown as Record<string, unknown>).cabinFeeIntlDetail as Record<string, number> | undefined;
+        if (transportResult.mode === 'CABIN' || transportResult.mode === 'CABIN_ONLY') {
+          const intlFee = intlFees?.[destCode];
+          if (intlFee) {
+            return `${intlFee.toLocaleString()}원 (국제선 기내 반입)`;
+          }
+          return `${(airline.cabinFeeKRW ?? 30000).toLocaleString()}원 (국내선 기내 반입)`;
+        }
+        if (transportResult.mode === 'CARGO') {
+          return `${airline.cargoFeeKRW ?? '항공사 문의'} (화물 운송)`;
+        }
+        return '항공사 문의';
+      })(),
       documentCost: totalEstimatedCost > 0 ? `약 ${totalEstimatedCost.toLocaleString()}원 (서류 발급비 별도)` : undefined,
       warnings: generateWarnings(petInfo, airline, transportResult),
     };

@@ -5,18 +5,25 @@
       "nameKo": "대한항공",
       "nameEn": "Korean Air",
       "cabinAllowed": true,
-      "cabinMaxKg": 5,
+      "cabinMaxKg": 7,
       "cabinCageSize": "45x32x21cm 이하 (소프트케이지)",
-      "cabinFeeKRW": 20000,
-      "cabinFeeIntlKRW": "구간별 상이 (70,000~300,000원)",
+      "cabinFeeKRW": 30000,
+      "cabinFeeIntlKRW": "일본 150,000원 / 동남아 225,000원 / 미주 300,000원",
+      "cabinFeeIntlDetail": {
+        "JP": 150000,
+        "TW": 150000,
+        "TH": 225000,
+        "VN": 225000,
+        "US": 300000
+      },
       "cargoAllowed": true,
       "cargoMaxKg": 45,
       "cargoFeeKRW": "국내 30,000~60,000원, 국제선 구간별",
       "brachycephalicRestricted": true,
       "hotWeatherRestricted": true,
       "policyUrl": "https://www.koreanair.com/kr/ko/travel-information/special-travel/traveling-with-pets",
-      "notes": "단두종(퍼그, 불독 등)은 화물 운송 불가, 객실만 가능. 기온 7.2°C~29.4°C 범위 벗어나면 화물 제한. 6~9월 성수기 온도 제한 강화. 최소 8주령.",
-      "lastVerified": "2026-03-26"
+      "notes": "단두종(퍼그, 불독 등)은 화물 운송 불가, 객실만 가능. 콜센터에서 좌석 배정. 추가 좌석 구매 시 옆자리에 캐리어 가능. 최소 8주령.",
+      "lastVerified": "2026-03-27"
     },
     {
       "code": "OZ",
@@ -24,17 +31,24 @@
       "nameEn": "Asiana Airlines",
       "cabinAllowed": true,
       "cabinMaxKg": 7,
-      "cabinCageSize": "45x32x21cm 이하 (소프트 26cm, 압축 시 21cm)",
-      "cabinFeeKRW": 20000,
-      "cabinFeeIntlKRW": "구간별 상이",
+      "cabinCageSize": "45x32x21cm 이하",
+      "cabinFeeKRW": 30000,
+      "cabinFeeIntlKRW": "일본 140,000원 / 동남아 210,000원 / 미주 290,000원",
+      "cabinFeeIntlDetail": {
+        "JP": 140000,
+        "TW": 140000,
+        "TH": 210000,
+        "VN": 210000,
+        "US": 290000
+      },
       "cargoAllowed": true,
       "cargoMaxKg": 45,
       "cargoFeeKRW": "구간별 상이",
       "brachycephalicRestricted": true,
       "hotWeatherRestricted": true,
       "policyUrl": "https://flyasiana.com/C/KR/KO/contents/traveling-with-pets",
-      "notes": "단두종 화물 탑승 금지. 7/1~9/30 단두종 제한 강화. 승객당 객실 1마리. 국내선 24시간 전, 국제선 48시간 전 예약 필수. 최소 8주령.",
-      "lastVerified": "2026-03-26"
+      "notes": "단두종 화물 탑승 금지. 앞 10열, 비상구, 벌크헤드, 복도석, 엑스트라레그룸 불가. 윈도우석만 가능. 최소 16주령.",
+      "lastVerified": "2026-03-27"
     },
     {
       "code": "7C",
@@ -44,33 +58,45 @@
       "cabinMaxKg": 9,
       "cabinCageSize": "가로 37cm 이하, 높이 23cm 이하, 3변 합 100cm 이하",
       "cabinFeeKRW": 20000,
-      "cabinFeeIntlKRW": "국제선 별도 문의",
+      "cabinFeeIntlKRW": "일본 70,000~85,000원 / 동남아 100,000원",
+      "cabinFeeIntlDetail": {
+        "JP": 85000,
+        "TW": 85000,
+        "TH": 100000,
+        "VN": 100000
+      },
       "cargoAllowed": false,
       "cargoMaxKg": null,
       "cargoFeeKRW": "화물 운송 불가",
       "brachycephalicRestricted": false,
       "hotWeatherRestricted": false,
       "policyUrl": "https://www.jejuair.net/ko/serviceInfo/petInfo.do",
-      "notes": "객실 탑승만 가능 (화물 없음). 편당 최대 6마리. 진정제 투여 불가. 같은 품종 또는 모-새끼 쌍은 1개 케이지 가능. 최소 8주령.",
-      "lastVerified": "2026-03-26"
+      "notes": "객실 탑승만 가능 (화물 없음). 편당 최대 6마리. 9kg까지 가능 (가장 관대). 최소 8주령.",
+      "lastVerified": "2026-03-27"
     },
     {
       "code": "LJ",
       "nameKo": "진에어",
       "nameEn": "Jin Air",
       "cabinAllowed": true,
-      "cabinMaxKg": 5,
+      "cabinMaxKg": 7,
       "cabinCageSize": "3변 합 115cm 이하",
       "cabinFeeKRW": 20000,
-      "cabinFeeIntlKRW": "구간별 상이",
+      "cabinFeeIntlKRW": "일본 70,000~85,000원 / 동남아 100,000원",
+      "cabinFeeIntlDetail": {
+        "JP": 85000,
+        "TW": 85000,
+        "TH": 100000,
+        "VN": 100000
+      },
       "cargoAllowed": false,
       "cargoMaxKg": null,
       "cargoFeeKRW": "화물 운송 불가",
       "brachycephalicRestricted": true,
       "hotWeatherRestricted": false,
       "policyUrl": "https://www.jinair.com/addService/jinipet/statute",
-      "notes": "단두종(퍼그, 불독, 시츄, 복서 등) 탑승 금지. 맹견 5종 탑승 금지 (토사, 핏불테리어, 아메리칸 스태포드셔, 스태포드셔 불테리어, 로트와일러). 웹/모바일 체크인 불가, 공항 카운터 필수. 최소 8주령.",
-      "lastVerified": "2026-03-26"
+      "notes": "단두종(퍼그, 불독, 시츄, 복서 등) 탑승 금지. 맹견 5종 탑승 금지. 공항 카운터 체크인 필수. 최소 8주령.",
+      "lastVerified": "2026-03-27"
     },
     {
       "code": "TW",
@@ -80,15 +106,21 @@
       "cabinMaxKg": 9,
       "cabinCageSize": "하드 37x23cm 이하, 소프트 26cm 이하, 3변 합 115cm 미만",
       "cabinFeeKRW": 30000,
-      "cabinFeeIntlKRW": "국제선 별도 문의",
+      "cabinFeeIntlKRW": "일본 100,000원 / 동남아 150,000원",
+      "cabinFeeIntlDetail": {
+        "JP": 100000,
+        "TW": 100000,
+        "TH": 150000,
+        "VN": 150000
+      },
       "cargoAllowed": false,
       "cargoMaxKg": null,
       "cargoFeeKRW": "화물 운송 불가",
       "brachycephalicRestricted": false,
       "hotWeatherRestricted": false,
       "policyUrl": "https://www.twayair.com/app/customerCenter/faq",
-      "notes": "객실 탑승만 가능. 비즈니스 세이버 등급 탑승 불가. 국제선 개/고양이만 가능. 모-새끼(8주~6개월), 형제(6개월 미만), 새 2마리는 1케이지 가능. 최소 8주령.",
-      "lastVerified": "2026-03-26"
+      "notes": "객실 탑승만 가능. 9kg까지 가능. 최소 8주령.",
+      "lastVerified": "2026-03-27"
     },
     {
       "code": "BX",
@@ -99,14 +131,20 @@
       "cabinCageSize": "3변 합 115cm 이하, 높이 24cm 이하",
       "cabinFeeKRW": 20000,
       "cabinFeeIntlKRW": "국제선 별도 문의",
+      "cabinFeeIntlDetail": {
+        "JP": 85000,
+        "TW": 85000,
+        "TH": 100000,
+        "VN": 100000
+      },
       "cargoAllowed": true,
       "cargoMaxKg": 32,
-      "cargoFeeKRW": "국내선만 가능, 구간별 상이",
+      "cargoFeeKRW": "국내선 30,000원",
       "brachycephalicRestricted": false,
       "hotWeatherRestricted": false,
       "policyUrl": "https://www.airbusan.com/content/common/service/customer/animal",
-      "notes": "국내선에서만 수하물/화물 가능. 진정제/수면제 투여 불가. 임신/공격적/악취 동물 불가. 발리, 홍콩 등 반입 금지 지역 사전 확인 필수. 최소 8주령.",
-      "lastVerified": "2026-03-26"
+      "notes": "국내선에서만 위탁/화물 가능. 국제선은 기내 반입만. 최소 8주령.",
+      "lastVerified": "2026-03-27"
     }
   ]
 }
