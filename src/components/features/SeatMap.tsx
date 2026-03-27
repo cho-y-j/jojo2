@@ -419,7 +419,7 @@ export default function SeatMap({
             </div>
 
             {/* 좌석 행들 */}
-            <div className="flex flex-col gap-[1px]">
+            <div className="flex flex-col gap-[1px] items-center">
               {rows.map(row => (
                 <SeatRow
                   key={row}

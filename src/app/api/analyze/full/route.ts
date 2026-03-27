@@ -256,7 +256,12 @@ export async function POST(request: Request) {
       },
       timeline,
       aircraftType: aircraftType ?? undefined,
-      totalEstimatedCost: `약 ${totalEstimatedCost.toLocaleString()}원`,
+      totalEstimatedCost: transportResult.mode === 'CABIN'
+        ? `${(airline.cabinFeeKRW ?? 50000).toLocaleString()}원 (기내 반입 수수료)`
+        : transportResult.mode === 'CARGO'
+          ? `${airline.cargoFeeKRW ?? '항공사 문의'} (화물 운송비)`
+          : '항공사 문의',
+      documentCost: totalEstimatedCost > 0 ? `약 ${totalEstimatedCost.toLocaleString()}원 (서류 발급비 별도)` : undefined,
       warnings: generateWarnings(petInfo, airline, transportResult),
     };
 
