@@ -1,6 +1,7 @@
 import { FullAnalysisRequestSchema } from '@/lib/schemas';
 import regulationsData from '@/data/regulations.json';
 import airlinesData from '@/data/airlines.json';
+import { getFlightAircraftType } from '@/lib/incheon-api';
 
 interface AirlinePolicy {
   code: string;
@@ -179,6 +180,17 @@ export async function POST(request: Request) {
       airline,
     );
 
+    // 인천공항 운항 현황 API에서 항공기 기종 조회
+    let aircraftType: string | null = null;
+    try {
+      aircraftType = await getFlightAircraftType(
+        flightInfo.flight_number,
+        flightInfo.departure_date,
+      );
+    } catch (error) {
+      console.warn('[POST /api/analyze/full] 항공기 기종 조회 실패:', error);
+    }
+
     const timeline = generateTimeline(
       flightInfo.departure_date,
       country.regulations,
@@ -243,6 +255,7 @@ export async function POST(request: Request) {
         },
       },
       timeline,
+      aircraftType: aircraftType ?? undefined,
       totalEstimatedCost: `약 ${totalEstimatedCost.toLocaleString()}원`,
       warnings: generateWarnings(petInfo, airline, transportResult),
     };

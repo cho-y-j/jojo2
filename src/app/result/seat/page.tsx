@@ -25,6 +25,7 @@ export default function SeatPage() {
 
   const airlineCode = fullAnalysis?.flight?.airline_code ?? flightInfo?.airline_code ?? 'KE';
   const airlineName = fullAnalysis?.flight?.airline_name_ko ?? flightInfo?.airline_name_ko ?? '대한항공';
+  const aircraftType = fullAnalysis?.aircraftType;
 
   return (
     <PageTransition>
@@ -59,7 +60,7 @@ export default function SeatPage() {
 
             {/* Seat map component */}
             <motion.div variants={itemVariants} className="mb-6">
-              <SeatMap airlineCode={airlineCode} />
+              <SeatMap airlineCode={airlineCode} aircraftType={aircraftType} />
             </motion.div>
 
             {/* Info cards */}

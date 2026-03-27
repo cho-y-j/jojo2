@@ -40,6 +40,7 @@ interface FullAnalysisResult {
     estimatedCost: string;
     issueMethod: string;
   }>;
+  aircraftType?: string;
   totalEstimatedCost: string;
   warnings: string[];
 }
