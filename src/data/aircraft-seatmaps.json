@@ -1,0 +1,206 @@
+{
+  "aircraft": [
+    {
+      "code": "B777-300ER",
+      "name": "Boeing 777-300ER",
+      "airlines": ["KE", "OZ"],
+      "description": "대한항공/아시아나 장거리 주력 기종",
+      "seatPitch": "31-32인치 (약 79-81cm)",
+      "underSeatHeight": "약 30cm",
+      "petFriendlyScore": 3,
+      "petFriendlyLabel": "보통",
+      "economy": {
+        "layout": "3-3-3",
+        "columns": ["A","B","C","_","D","E","F","_","G","H","J"],
+        "totalRows": 42,
+        "rowStart": 30,
+        "rowEnd": 71,
+        "exitRows": [40, 41, 55, 56],
+        "bulkheadRows": [30, 42, 57],
+        "noReclineRows": [41, 56, 71],
+        "petAllowedSeats": {
+          "description": "윈도우석(A, J) 우선 권장. 비상구/벌크헤드 제외. 아시아나는 앞 10열(30-39) 불가",
+          "recommended": ["A", "J"],
+          "allowed": ["A", "B", "C", "G", "H", "J"],
+          "blockedColumns": [],
+          "blockedRows_KE": [40, 41, 55, 56, 30],
+          "blockedRows_OZ": [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 55, 56],
+          "reason_KE": "비상구열(40-41, 55-56) 및 벌크헤드(30열) 금지",
+          "reason_OZ": "앞 10열(30-39) + 비상구열(40-41, 55-56) 금지"
+        }
+      },
+      "tips": "가장 많이 운항되는 기종. 3-3-3 배치로 가운데 블록 피하고 윈도우 선택"
+    },
+    {
+      "code": "A380-800",
+      "name": "Airbus A380-800",
+      "airlines": ["KE"],
+      "description": "대한항공 초대형 기종 (2층 구조)",
+      "seatPitch": "31-34인치 (약 79-86cm)",
+      "underSeatHeight": "약 33cm",
+      "petFriendlyScore": 5,
+      "petFriendlyLabel": "매우 좋음",
+      "economy": {
+        "layout": "3-4-3",
+        "columns": ["A","B","C","_","D","E","F","G","_","H","J","K"],
+        "totalRows": 36,
+        "rowStart": 60,
+        "rowEnd": 95,
+        "exitRows": [72, 73],
+        "bulkheadRows": [60, 74],
+        "noReclineRows": [71, 95],
+        "petAllowedSeats": {
+          "description": "메인데크(2층) 이코노미. 윈도우석(A, K) 권장. 좌석 피치 넉넉",
+          "recommended": ["A", "K"],
+          "allowed": ["A", "B", "C", "H", "J", "K"],
+          "blockedColumns": [],
+          "blockedRows_KE": [60, 72, 73, 74],
+          "reason_KE": "벌크헤드(60, 74열) 및 비상구열(72-73열) 금지"
+        }
+      },
+      "tips": "⭐ 반려동물에 최적! 좌석 피치 최대 34인치, 아래 공간 가장 넓음. 소음도 적음"
+    },
+    {
+      "code": "B787-9",
+      "name": "Boeing 787-9 Dreamliner",
+      "airlines": ["KE", "OZ"],
+      "description": "대한항공/아시아나 중장거리 기종",
+      "seatPitch": "31-33인치 (약 79-84cm)",
+      "underSeatHeight": "약 31cm",
+      "petFriendlyScore": 4,
+      "petFriendlyLabel": "좋음",
+      "economy": {
+        "layout": "3-3-3",
+        "columns": ["A","B","C","_","D","E","F","_","G","H","J"],
+        "totalRows": 34,
+        "rowStart": 25,
+        "rowEnd": 58,
+        "exitRows": [38, 39],
+        "bulkheadRows": [25, 40],
+        "noReclineRows": [37, 58],
+        "petAllowedSeats": {
+          "description": "습도 관리 우수 → 반려동물 스트레스 감소. 윈도우석(A, J) 권장",
+          "recommended": ["A", "J"],
+          "allowed": ["A", "B", "C", "G", "H", "J"],
+          "blockedColumns": [],
+          "blockedRows_KE": [25, 38, 39, 40],
+          "blockedRows_OZ": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 38, 39, 40],
+          "reason_KE": "벌크헤드(25, 40열) 및 비상구열(38-39열) 금지",
+          "reason_OZ": "앞 10열 + 비상구열 금지"
+        }
+      },
+      "tips": "습도 조절 기능 우수 → 반려동물이 편안. 대형 창문으로 개방감"
+    },
+    {
+      "code": "A330-300",
+      "name": "Airbus A330-300",
+      "airlines": ["OZ"],
+      "description": "아시아나 중장거리 주력 기종",
+      "seatPitch": "31-32인치 (약 79-81cm)",
+      "underSeatHeight": "약 30cm",
+      "petFriendlyScore": 3,
+      "petFriendlyLabel": "보통",
+      "economy": {
+        "layout": "2-4-2",
+        "columns": ["A","B","_","D","E","F","G","_","H","J"],
+        "totalRows": 36,
+        "rowStart": 25,
+        "rowEnd": 60,
+        "exitRows": [38, 39],
+        "bulkheadRows": [25, 40],
+        "noReclineRows": [37, 60],
+        "petAllowedSeats": {
+          "description": "2-4-2 배치! 윈도우 2인석(A-B, H-J)이 가장 편안",
+          "recommended": ["A", "J"],
+          "allowed": ["A", "B", "H", "J"],
+          "blockedColumns": ["D", "E", "F", "G"],
+          "blockedRows_OZ": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 38, 39, 40],
+          "reason_OZ": "앞 10열 + 비상구열 + 벌크헤드 금지. 가운데 4인석 비추"
+        }
+      },
+      "tips": "2-4-2 배치가 장점! 윈도우 쪽 2인석(A-B 또는 H-J) 선택 시 가장 편안"
+    },
+    {
+      "code": "B737-800",
+      "name": "Boeing 737-800",
+      "airlines": ["7C", "LJ", "TW", "BX"],
+      "description": "LCC 국제선 주력 기종 (단거리)",
+      "seatPitch": "29-30인치 (약 74-76cm)",
+      "underSeatHeight": "약 27cm",
+      "petFriendlyScore": 2,
+      "petFriendlyLabel": "좁음",
+      "economy": {
+        "layout": "3-3",
+        "columns": ["A","B","C","_","D","E","F"],
+        "totalRows": 30,
+        "rowStart": 1,
+        "rowEnd": 30,
+        "exitRows": [14, 15],
+        "bulkheadRows": [1, 16],
+        "noReclineRows": [13, 30],
+        "petAllowedSeats": {
+          "description": "좁은 편. 윈도우석(A, F) 필수. 소형견/고양이만 적합",
+          "recommended": ["A", "F"],
+          "allowed": ["A", "B", "E", "F"],
+          "blockedColumns": [],
+          "blockedRows_ALL": [1, 14, 15, 16],
+          "reason_ALL": "비상구열(14-15) 및 벌크헤드(1, 16열) 금지"
+        }
+      },
+      "tips": "좌석 피치 좁음 주의! 소형 캐리어만 가능. 케이지 높이 23cm 이하 필수"
+    },
+    {
+      "code": "A321neo",
+      "name": "Airbus A321neo",
+      "airlines": ["7C", "TW", "BX"],
+      "description": "LCC 신기종 (중단거리)",
+      "seatPitch": "29-31인치 (약 74-79cm)",
+      "underSeatHeight": "약 28cm",
+      "petFriendlyScore": 2,
+      "petFriendlyLabel": "좁음",
+      "economy": {
+        "layout": "3-3",
+        "columns": ["A","B","C","_","D","E","F"],
+        "totalRows": 33,
+        "rowStart": 1,
+        "rowEnd": 33,
+        "exitRows": [14, 15],
+        "bulkheadRows": [1, 16],
+        "noReclineRows": [13, 33],
+        "petAllowedSeats": {
+          "description": "B737보다 약간 넓음. 윈도우석(A, F) 권장",
+          "recommended": ["A", "F"],
+          "allowed": ["A", "B", "E", "F"],
+          "blockedColumns": [],
+          "blockedRows_ALL": [1, 14, 15, 16],
+          "reason_ALL": "비상구열(14-15) 및 벌크헤드(1, 16열) 금지"
+        }
+      },
+      "tips": "B737-800보다 약간 더 넓은 아래 공간. LCC 중에선 나은 편"
+    }
+  ],
+  "airlineAircraftMap": {
+    "KE": {
+      "longHaul": ["A380-800", "B777-300ER", "B787-9"],
+      "shortHaul": ["B737-800"]
+    },
+    "OZ": {
+      "longHaul": ["A330-300", "B777-300ER", "B787-9"],
+      "shortHaul": ["A321neo"]
+    },
+    "7C": { "all": ["B737-800", "A321neo"] },
+    "LJ": { "all": ["B737-800"] },
+    "TW": { "all": ["B737-800", "A321neo"] },
+    "BX": { "all": ["B737-800", "A321neo"] }
+  },
+  "seatRecommendationLogic": {
+    "priority": [
+      "1. 윈도우석 (A 또는 마지막 열 알파벳) — 통행 방해 최소, 고정 공간",
+      "2. 비상구/벌크헤드 제외 — 항공사 규정",
+      "3. 앞 10열 제외 (아시아나) — 아시아나 고유 규정",
+      "4. 뒷좌석 피하기 (리클라인 안됨) — 편의성",
+      "5. 가운데 블록 피하기 — 반려동물 스트레스"
+    ],
+    "bestSeatFormula": "윈도우 + 비차단열 + 중앙부(전체 행 40-70% 지점)"
+  }
+}

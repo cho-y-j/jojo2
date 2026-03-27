@@ -5,10 +5,8 @@ import { motion } from 'framer-motion';
 import { Info } from 'lucide-react';
 import { StepNavigation, BottomCTA, PageTransition } from '@/components/layout';
 import { Card } from '@/components/ui';
-
-const ROWS = 15;
-const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F'];
-const RECOMMENDED = ['A', 'F'];
+import SeatMap from '@/components/features/SeatMap';
+import { useAnalysisStore } from '@/stores/analysis-store';
 
 const containerVariants = {
   hidden: {},
@@ -20,34 +18,13 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: 'easeOut' as const } },
 };
 
-function SeatCell({ column, row }: { column: string; row: number }) {
-  const isRecommended = RECOMMENDED.includes(column);
-  const isEmergency = row === 11;
-
-  if (isEmergency) {
-    return (
-      <div className="w-[32px] h-[28px] rounded-[4px] bg-[#F2F4F6] flex items-center justify-center">
-        <span className="text-[9px] text-[#D1D6DB]">-</span>
-      </div>
-    );
-  }
-
-  return (
-    <div
-      className={`w-[32px] h-[28px] rounded-[4px] flex items-center justify-center text-[10px] font-semibold ${
-        isRecommended
-          ? 'bg-[#3182F6] text-white'
-          : 'bg-[#F2F4F6] text-[#D1D6DB]'
-      }`}
-    >
-      {column}
-    </div>
-  );
-}
-
 export default function SeatPage() {
   const router = useRouter();
-  const rows = Array.from({ length: ROWS }, (_, i) => i + 1);
+  const flightInfo = useAnalysisStore((s) => s.flightInfo);
+  const fullAnalysis = useAnalysisStore((s) => s.fullAnalysis);
+
+  const airlineCode = fullAnalysis?.flight?.airline_code ?? flightInfo?.airline_code ?? 'KE';
+  const airlineName = fullAnalysis?.flight?.airline_name_ko ?? flightInfo?.airline_name_ko ?? '대한항공';
 
   return (
     <PageTransition>
@@ -69,91 +46,21 @@ export default function SeatPage() {
             {/* Heading */}
             <motion.h2
               variants={itemVariants}
-              className="text-[26px] font-bold text-[#191F28] leading-[1.4] break-keep mb-8"
+              className="text-[22px] font-bold text-[#191F28] leading-[1.4] break-keep mb-2"
             >
               추천 좌석을{'\n'}확인해보세요
             </motion.h2>
-
-            {/* Seat map */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <Card className="overflow-hidden">
-                {/* Airplane nose */}
-                <div className="flex justify-center mb-4">
-                  <div className="w-[60px] h-[24px] bg-[#E5E8EB] rounded-t-full" />
-                </div>
-
-                {/* Column headers */}
-                <div className="flex items-center justify-center gap-0 mb-2">
-                  <div className="w-[28px]" />
-                  {COLUMNS.slice(0, 3).map((col) => (
-                    <div key={col} className="w-[32px] flex items-center justify-center mx-[2px]">
-                      <span className={`text-[11px] font-bold ${RECOMMENDED.includes(col) ? 'text-[#3182F6]' : 'text-[#8B95A1]'}`}>
-                        {col}
-                      </span>
-                    </div>
-                  ))}
-                  <div className="w-[20px]" />
-                  {COLUMNS.slice(3).map((col) => (
-                    <div key={col} className="w-[32px] flex items-center justify-center mx-[2px]">
-                      <span className={`text-[11px] font-bold ${RECOMMENDED.includes(col) ? 'text-[#3182F6]' : 'text-[#8B95A1]'}`}>
-                        {col}
-                      </span>
-                    </div>
-                  ))}
-                  <div className="w-[28px]" />
-                </div>
-
-                {/* Seat rows */}
-                <div className="flex flex-col gap-[4px]">
-                  {rows.map((row) => (
-                    <div key={row} className="flex items-center justify-center gap-0">
-                      {/* Row number left */}
-                      <div className="w-[28px] flex items-center justify-end pr-2">
-                        <span className="text-[10px] text-[#8B95A1]">{row}</span>
-                      </div>
-                      {/* Left seats A B C */}
-                      <div className="flex gap-[4px]">
-                        {COLUMNS.slice(0, 3).map((col) => (
-                          <SeatCell key={col} column={col} row={row} />
-                        ))}
-                      </div>
-                      {/* Aisle */}
-                      <div className="w-[20px]" />
-                      {/* Right seats D E F */}
-                      <div className="flex gap-[4px]">
-                        {COLUMNS.slice(3).map((col) => (
-                          <SeatCell key={col} column={col} row={row} />
-                        ))}
-                      </div>
-                      {/* Row number right */}
-                      <div className="w-[28px] flex items-center pl-2">
-                        <span className="text-[10px] text-[#8B95A1]">{row}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Legend */}
-                <div className="flex items-center justify-center gap-4 mt-5 pt-4 border-t border-[#F2F4F6]">
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-4 h-3 rounded-[2px] bg-[#3182F6]" />
-                    <span className="text-[12px] text-[#4E5968]">추천 좌석</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-4 h-3 rounded-[2px] bg-[#F2F4F6]" />
-                    <span className="text-[12px] text-[#4E5968]">일반 좌석</span>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            {/* Explanation */}
             <motion.p
               variants={itemVariants}
-              className="text-[15px] text-[#4E5968] text-center leading-[1.6] break-keep mb-6"
+              className="text-[15px] text-[#4E5968] leading-[1.6] break-keep mb-6"
             >
-              반려동물과 함께라면 창가석(A, F)을 추천해요
+              {airlineName} 기종별 반려동물 좌석을 안내해요
             </motion.p>
+
+            {/* Seat map component */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <SeatMap airlineCode={airlineCode} />
+            </motion.div>
 
             {/* Info cards */}
             <motion.div variants={itemVariants} className="flex flex-col gap-3">
@@ -169,10 +76,40 @@ export default function SeatPage() {
                 <div className="flex items-start gap-3">
                   <Info className="w-5 h-5 text-[#FF6B35] mt-0.5 flex-shrink-0" />
                   <p className="text-[15px] text-[#191F28] leading-[1.6] break-keep">
-                    비상구 좌석은 선택할 수 없어요
+                    비상구 좌석은 반려동물과 함께 앉을 수 없어요
                   </p>
                 </div>
               </Card>
+              {airlineCode === 'OZ' && (
+                <Card className="bg-[#FFEAEC] border-none shadow-none">
+                  <div className="flex items-start gap-3">
+                    <Info className="w-5 h-5 text-[#F04452] mt-0.5 flex-shrink-0" />
+                    <p className="text-[15px] text-[#191F28] leading-[1.6] break-keep">
+                      아시아나는 앞 10열, 비상구, 벌크헤드, 복도석, 엑스트라레그룸 불가예요. 윈도우석만 가능해요.
+                    </p>
+                  </div>
+                </Card>
+              )}
+              {airlineCode === 'KE' && (
+                <Card className="bg-[#E8F9EF] border-none shadow-none">
+                  <div className="flex items-start gap-3">
+                    <Info className="w-5 h-5 text-[#00C471] mt-0.5 flex-shrink-0" />
+                    <p className="text-[15px] text-[#191F28] leading-[1.6] break-keep">
+                      대한항공은 콜센터에서 좌석을 배정해요. 추가 좌석 구매 시 옆자리에 캐리어를 놓을 수 있어요.
+                    </p>
+                  </div>
+                </Card>
+              )}
+              {['7C', 'LJ', 'TW', 'BX'].includes(airlineCode) && (
+                <Card className="bg-[#E8F0FE] border-none shadow-none">
+                  <div className="flex items-start gap-3">
+                    <Info className="w-5 h-5 text-[#3182F6] mt-0.5 flex-shrink-0" />
+                    <p className="text-[15px] text-[#191F28] leading-[1.6] break-keep">
+                      LCC는 좌석 피치가 좁아요. 소형 캐리어(높이 23cm 이하)만 가능해요.
+                    </p>
+                  </div>
+                </Card>
+              )}
             </motion.div>
           </motion.div>
         </main>
